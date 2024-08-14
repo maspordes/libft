@@ -1,3 +1,4 @@
+#include "libft.h"
 void ft_putnbr_fd(int n, int fd)
 {
     char buffer[11];  // Enough to hold INT_MIN
