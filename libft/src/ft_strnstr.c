@@ -1,24 +1,20 @@
-#include "libft.h"
+#include <stddef.h>
+#include <string.h>
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+/* Locates the first occurrence of 'needle' in 'haystack' up to 'len' bytes. */
+char *ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	size_t	i;
-	size_t	j;
+    size_t needle_len;
 
-	i = 0;
-	j = 0;
-	if (needle[0] == 0)
-		return ((char *)haystack);
-	while (haystack[i] && i < len)
-	{
-		while (haystack[i + j] && haystack[i + j] == needle[j] && i + j < len)
-		{
-			j++;
-			if (needle[j] == 0)
-				return ((char *)haystack + i);
-		}
-		i++;
-		j = 0;
-	}
-	return (0);
+    needle_len = strlen(needle);
+    if (needle_len == 0)
+        return ((char *)haystack);
+    while (*haystack && len >= needle_len)
+    {
+        if (strncmp(haystack, needle, needle_len) == 0)
+            return ((char *)haystack);
+        haystack++;
+        len--;
+    }
+    return (NULL);
 }

@@ -1,22 +1,16 @@
-#include "libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-char	*ft_strdup(const char *s1)
+/* Allocates and returns a duplicate of the string 's'. */
+char *ft_strdup(const char *s)
 {
-	char	*dest;
-	size_t	i;
+    char *dup;
+    size_t len;
 
-	i = 0;
-	while (s1[i])
-		i++;
-	dest = (char *)malloc(sizeof(char) * (i + 1));
-	if (dest == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		dest[i] = s1[i];
-		i++;
-	}
-	dest [i] = '\0';
-	return (dest);
+    len = strlen(s);
+    dup = (char *)malloc(len + 1);
+    if (!dup)
+        return (NULL);
+    strcpy(dup, s);
+    return (dup);
 }
