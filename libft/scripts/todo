@@ -1,0 +1,12 @@
+	reinplement common c library functions from scratch
+	understand link lists and how to manipulate them
+	write a makefile
+	test your functions for edge cases, normal cases and know how to create
+and compile a simple test program for each function since its crucial
+	follow coding standards
+	manage memory carefully and check for leaks or erros
+	understand memory management and string manipulation
+	debug using gdb or valgrind to check for memory issues like momory leaks	understand linked lists and how to manage memory correctly
+	understand malloc free and realloc
+	understand c strings
+	error handling(returning NULL for failed memory allocations fexmpl)

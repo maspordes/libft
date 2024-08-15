@@ -1,0 +1,44 @@
+
+# This is the Makefile for the libtfc project. It automates the process of compiling and linking the project files.
+
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iinclude  # -Wall, -Wextra, -Werror are compiler flags to show all warnings, extra warnings, and treat warnings as errors.
+
+# Directories
+SRCDIR = src       # Directory where source files (.c) are located.
+OBJDIR = obj       # Directory where object files (.o) will be stored after compilation.
+LIBDIR = lib       # Directory where the final library file will be placed.
+
+# Files
+SRC = $(SRCDIR)/main.c $(SRCDIR)/libtfc.c  # List of source files to compile.
+OBJ = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRC))  # Converts source file names to object file names.
+LIB = $(LIBDIR)/libtfc.a  # The name and path of the static library to be created.
+
+# Target: all (Build the library)
+# This is the default target that runs when you type 'make'. It depends on the static library.
+all: $(LIB)
+
+# Target: lib (Create the static library from object files)
+# This rule tells Makefile how to create the library from object files.
+$(LIB): $(OBJ)
+	@mkdir -p $(LIBDIR)  # Create the library directory if it doesn't exist.
+	ar rcs $@ $^  # Create the static library using the ar command. $@ is the target (libtfc.a), $^ are the dependencies (all .o files).
+
+# Target: object files (Compile .c files into .o files)
+# This rule describes how to convert each .c file into a .o file.
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)  # Create the object directory if it doesn't exist.
+	$(CC) $(CFLAGS) -c $< -o $@  # Compile the .c file into a .o file. $< is the source file, $@ is the target (object file).
+
+# Target: clean (Remove all temporary files)
+# This rule deletes all the compiled object files and the library.
+clean:
+	rm -rf $(OBJDIR) $(LIBDIR)
+
+# Target: re (Clean and rebuild everything)
+# This rule cleans the project and then rebuilds it.
+re: clean all
+
+# .PHONY tells Makefile that 'all', 'clean', and 're' are not files, but just commands.
+.PHONY: all clean re
