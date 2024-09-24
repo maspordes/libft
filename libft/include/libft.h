@@ -2,6 +2,8 @@
 # define LIBFT_H
 
 # include <stddef.h> // For size_t
+# include <unistd.h>
+# include <stdlib.h>
 
 // Memory functions
 void    *ft_memset(void *b, int c, size_t len);
@@ -41,6 +43,12 @@ int     ft_tolower(int c);
 // Memory allocation functions
 void    *ft_calloc(size_t count, size_t size);
 char    *ft_substr(char const *s, unsigned int start, size_t len);
+
+// I/O functions
+void    ft_putchar_fd(char c, int fd);
+void    ft_putstr_fd(char *s, int fd);
+void    ft_putendl_fd(char *s, int fd);
+void    ft_putnbr_fd(int n, int fd);
 
 // Additional utility functions (if applicable)
 char    *ft_itoa(int n);

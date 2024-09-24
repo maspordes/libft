@@ -1,4 +1,16 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrey <marrey@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/24 12:01:44 by marrey            #+#    #+#             */
+/*   Updated: 2024/09/24 12:02:02 by marrey           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//#include "libft.h"
 
 int ft_atoi(const char *str)
 {
@@ -38,45 +50,33 @@ int ft_atoi(const char *str)
 
     return (result * sign);
 }
-int main(void)
-{
-    char *test_cases[] = 
-    {
-        "42",
-        "   -42",
-        "   +42",
-        "   2147483647",
-        "   -2147483648",
-        "2147483648",
-        "-2147483649",
-        "0",
-        "-0",
-        "   123abc456",
-        "abc",
-        "   +0000001234",
-        "   -00123",
-        "   \t\n\v\f\r 567",
-        "",
-        NULL
-    };
 
-    int i = 0;
-    while (test_cases[i] != NULL)
-    {
-        int my_result = ft_atoi(test_cases[i]);
-        int real_result = atoi(test_cases[i]);
+//#include "libft.h"
+#include <stdio.h>    // For printf
+#include <stdlib.h>   // For atoi
 
-        printf("Test case: \"%s\"\n", test_cases[i]);
-        printf("ft_atoi: %d, atoi: %d\n", my_result, real_result);
+int main(void) {
+    char *str1 = "1234";
+    char *str2 = "   -42";
+    char *str3 = "0";
+    char *str4 = "999999999999999";
+    char *str5 = "abc123";
+    
+    // Test your ft_atoi function with multiple inputs
+    printf("My ft_atoi with '1234': %d\n", ft_atoi(str1));
+    printf("Standard atoi with '1234': %d\n", atoi(str1));
 
-        if (my_result == real_result)
-            printf("yessss, results match\n");
-        else
-            printf("noot, results differ!\n");
+    printf("My ft_atoi with '   -42': %d\n", ft_atoi(str2));
+    printf("Standard atoi with '   -42': %d\n", atoi(str2));
 
-        printf("----------------------------\n")
-        i++;
-    }
+    printf("My ft_atoi with '0': %d\n", ft_atoi(str3));
+    printf("Standard atoi with '0': %d\n", atoi(str3));
 
-    return (0);
+    printf("My ft_atoi with '999999999999999': %d\n", ft_atoi(str4));
+    printf("Standard atoi with '999999999999999': %d\n", atoi(str4));
+
+    printf("My ft_atoi with 'abc123': %d\n", ft_atoi(str5));
+    printf("Standard atoi with 'abc123': %d\n", atoi(str5));
+
+    return 0;
 }
