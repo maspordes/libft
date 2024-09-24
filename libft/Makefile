@@ -3,63 +3,44 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yourusername <yourusername@42.fr>           +#+  +:+       +#+         #
+#    By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: YYYY/MM/DD HH:MM:SS by yourusername     #+#    #+#              #
-#    Updated: YYYY/MM/DD HH:MM:SS by yourusername    ###   ########.fr        #
+#    Created: 2024/04/22 10:42:06 by dgomez-a          #+#    #+#              #
+#    Updated: 2024/04/26 17:48:16 by dgomez-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Compiler and flags
+NAME = libft.a
+
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
 
-# Directories
-SRCDIR = src
-OBJDIR = obj
-INCDIR = include
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
+       ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
+       ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
+       ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
+       ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
+       ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
+       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-# Files
-NAME = libft.a
-SRC = $(SRCDIR)/ft_atoi.c $(SRCDIR)/ft_bzero.c $(SRCDIR)/ft_calloc.c \
-      $(SRCDIR)/ft_isalnum.c $(SRCDIR)/ft_isalpha.c $(SRCDIR)/ft_isascii.c \
-      $(SRCDIR)/ft_isdigit.c $(SRCDIR)/ft_isprint.c $(SRCDIR)/ft_memchr.c \
-      $(SRCDIR)/ft_memcmp.c $(SRCDIR)/ft_memcpy.c $(SRCDIR)/ft_memmove.c \
-      $(SRCDIR)/ft_memset.c $(SRCDIR)/ft_strdup.c $(SRCDIR)/ft_strchr.c \
-      $(SRCDIR)/ft_striteri.c $(SRCDIR)/ft_strjoin.c $(SRCDIR)/ft_strlcat.c \
-      $(SRCDIR)/ft_strlcpy.c $(SRCDIR)/ft_strmapi.c $(SRCDIR)/ft_strnstr.c \
-      $(SRCDIR)/ft_strncmp.c $(SRCDIR)/ft_strrchr.c $(SRCDIR)/ft_strtrim.c \
-      $(SRCDIR)/ft_substr.c $(SRCDIR)/ft_tolower.c $(SRCDIR)/ft_toupper.c \
-      $(SRCDIR)/ft_putnbr_fd.c $(SRCDIR)/ft_putchar_fd.c $(SRCDIR)/ft_putendl_fd.c \
-      $(SRCDIR)/ft_putstr_fd.c $(SRCDIR)/ft_itoa.c $(SRCDIR)/ft_split.c \
-OBJ = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+OBJS = $(SRCS:.c=.o)
 
-# Rules
-
-# Build the library
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@ar rcs $@ $^
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Compile source files into object files
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	@$(CC) $(CFLAGS) -I $(INCDIR) -c $< -o $@
+$(NAME): $(OBJS) 
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-# Create object directory if it doesn't exist
-$(OBJDIR):
-	@mkdir -p $(OBJDIR)
-
-# Clean object files
 clean:
-	@rm -rf $(OBJDIR)
+	rm -f $(OBJS)
 
-# Clean object files and the library
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
-# Rebuild the project
 re: fclean all
 
-# Phony targets
 .PHONY: all clean fclean re
