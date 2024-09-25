@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgomez-a <dgomez-a@student.42berlin.d      +#+  +:+       +#+         #
+#    By: marrey <marrey@student.42berlin.de>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/22 10:42:06 by dgomez-a          #+#    #+#              #
-#    Updated: 2024/04/26 17:48:16 by dgomez-a         ###   ########.fr        #
+#    Created: 2024/09/25 20:34:21 by marrey            #+#    #+#              #
+#    Updated: 2024/09/25 20:34:24 by marrey           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libft.a
 

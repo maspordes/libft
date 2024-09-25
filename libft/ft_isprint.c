@@ -6,7 +6,7 @@
 /*   By: marrey <marrey@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:50:47 by marrey            #+#    #+#             */
-/*   Updated: 2024/09/25 17:55:41 by marrey           ###   ########.fr       */
+/*   Updated: 2024/09/25 20:05:13 by marrey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	ft_isprint(int c)
 	return (0);
 }
 
-/*
 /*
 #include "libft.h"
 #include <stdio.h>
