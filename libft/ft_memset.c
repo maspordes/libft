@@ -1,20 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrey <marrey@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 16:25:36 by marrey            #+#    #+#             */
+/*   Updated: 2024/09/25 16:25:37 by marrey           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
-void    *ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
-    unsigned char   *ptr;
-    size_t          i;
+	unsigned char	*ptr;
 
-    ptr = (unsigned char *)b;
-    i = 0;
-    while (i < len)
-    {
-        ptr[i] = (unsigned char)c;
-        i++;
-    }
-    return (b);
+	ptr = s;
+	while (n--)
+	{
+		*ptr++ = (unsigned char)c;
+	}
+	return (s);
 }
-
+/*
 #include <stdio.h>
 #include <string.h>
 #include "libft.h"
@@ -33,4 +41,4 @@ int main(void)
     printf("After memset: %s\n", str2);  // Expected: "xxxxx, World!"
 
     return 0;
-}
+}*/

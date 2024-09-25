@@ -9,49 +9,39 @@
 /*   Updated: 2024/09/24 12:02:02 by marrey           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-//#include "libft.h"
-
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-    int i;
-    int sign;
-    unsigned int result;
+	int		sign;
+	long	result;
+	size_t	i;
 
-    i = 0;
-    sign = 1;
-    result = 0;
-
-    // Skip whitespace
-    while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-        i++;
-
-    // Handle sign
-    if (str[i] == '-' || str[i] == '+')
-    {
-        if (str[i] == '-')
-            sign = -1;
-        i++;
-    }
-
-    // Convert the digits
-    while (str[i] >= '0' && str[i] <= '9')
-    {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-
-    // Handle overflow for the case of 2147483648 (when sign is negative)
-    if (result > 2147483648 && sign == -1)
-        return (0);
-    // Handle overflow for the case of 2147483647 (when sign is positive)
-    if (result > 2147483647 && sign == 1)
-        return (-1);
-
-    return (result * sign);
+	sign = 1;
+	result = 0;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		if (result * sign > 2147483647)
+			return (-1);
+		if (result * sign < -2147483648)
+			return (0);
+		i++;
+	}
+	return (result * sign);
 }
 
-//#include "libft.h"
+/*
+#include "libft.h"
 #include <stdio.h>    // For printf
 #include <stdlib.h>   // For atoi
 
@@ -80,3 +70,4 @@ int main(void) {
 
     return 0;
 }
+*/

@@ -1,27 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrey <marrey@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 16:32:38 by marrey            #+#    #+#             */
+/*   Updated: 2024/09/25 17:12:53 by marrey           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmurua <tmurua@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 17:09:44 by tmurua            #+#    #+#             */
+/*   Updated: 2023/11/21 20:12:05 by tmurua           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stddef.h>
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    const char *last_occurrence = NULL;
+	size_t	i;
+	char	*str;
 
-    while (*s)
-    {
-        if (*s == (char)c)
-            last_occurrence = s;
-        s++;
-    }
-    if (c == '\0')
-        return ((char *)s);
-    return ((char *)last_occurrence);
+	str = (char *)s;
+	i = ft_strlen(s);
+	if (c == '\0')
+		return (str + i);
+	while (i != 0)
+	{
+		if (str[i] == (char)c)
+			return (str + i);
+		i--;
+	}
+	if (s[0] == (char)c)
+		return (str);
+	return (0);
 }
+
 /*int main() {
     const char *str = "Hello, World!";
     char *result1 = strrchr(str, 'o');
     char *result2 = ft_strrchr(str, 'o');
 
-    printf("Standard strrchr result: %s\n", result1);  // Should print "o, World!"
-    printf("ft_strrchr result: %s\n", result2);  // Should print "o, World!"
+    printf("Standard strrchr result: %s\n", result1);
+    printf("ft_strrchr result: %s\n", result2);
     
     return 0;
 }*/

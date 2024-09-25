@@ -1,46 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrey <marrey@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 14:35:45 by marrey            #+#    #+#             */
+/*   Updated: 2024/09/25 14:35:49 by marrey           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-    size_t i;
-    size_t j;
-    size_t dst_len;
-    size_t src_len;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	i;
 
-    dst_len = ft_strlen(dst);
-    src_len = ft_strlen(src);
-
-    if (dstsize <= dst_len)
-        return (dstsize + src_len);
-
-    i = dst_len;
-    j = 0;
-
-    while (src[j] != '\0' && (i + 1) < dstsize)
-    {
-        dst[i] = src[j];
-        i++;
-        j++;
-    }
-    dst[i] = '\0';
-
-    return (dst_len + src_len);
+	dst_len = ft_strlen(dst);
+	src_len = ft_strlen(src);
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	i = 0;
+	while (src[i] && (dst_len + i) < (dstsize - 1))
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }
+/*
 
 #include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
-int main(void)
+int	main(void)
 {
-    char dest[50] = "Hello, ";
-    const char *src = "World!";
-    size_t size = sizeof(dest);
+	char	dst[20] = "Hello, ";
+	const char	src[] = "World!";
+	size_t	result;
 
-    printf("Before ft_strlcat: %s\n", dest);
-    size_t result = ft_strlcat(dest, src, size);
-    printf("After ft_strlcat: %s\n", dest);  // Expected: "Hello, World!"
-    printf("Total length: %zu\n", result);    // Expected: length of "Hello, World!" (13)
+	result = ft_strlcat(dst, src, sizeof(dst));
+	printf("After ft_strlcat: %s\n", dst);  
+	printf("Returned length: %zu\n", result); 
 
-    return 0;
+	return (0);
 }
+*/

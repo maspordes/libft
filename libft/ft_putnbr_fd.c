@@ -1,40 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marrey <marrey@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/25 15:05:50 by marrey            #+#    #+#             */
+/*   Updated: 2024/09/25 15:05:52 by marrey           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
-void ft_putstr_fd(char *s, int fd)
+static void	ft_putnbr_helper(int n, int fd)
 {
-    if (s)
-        while (*s)
-            write(fd, s++, 1);
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr_helper(n / 10, fd);
+	ft_putchar_fd(n % 10 + '0', fd);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-    char buffer[11];  // Enough to hold INT_MIN
-    int i = 10;
-    unsigned int num;
-
-    buffer[10] = '\0';
-    if (n < 0)
-    {
-        num = -n;
-        buffer[0] = '-';
-    }
-    else
-        num = n;
-
-    do
-    {
-        buffer[i--] = (num % 10) + '0';
-        num /= 10;
-    } while (num > 0);
-
-    ft_putstr_fd(&buffer[i + 1], fd);
+	ft_putnbr_helper(n, fd);
 }
-/*int main() {
-    int num = 42;
-    ft_putbnr_fd(num, 1);  // Prints binary representation of 42 to stdout
-    write(1, "\n", 1);      // New line for clarity
-    return 0;
+/*
+#include <stdio.h>
+#include <unistd.h>
+#include "libft.h"
+
+int	main(void)
+{
+	ft_putnbr_fd(42, 1); // Expected output: "42"
+	write(1, "\n", 1);
+	ft_putnbr_fd(-42, 1); // Expected output: "-42"
+	write(1, "\n", 1);
+	ft_putnbr_fd(0, 1); // Expected output: "0"
+	write(1, "\n", 1);
+	ft_putnbr_fd(-2147483648, 1); // Expected output: "-2147483648"
+	write(1, "\n", 1);
+	ft_putnbr_fd(2147483647, 1); // Expected output: "2147483647"
+	write(1, "\n", 1);
+
+	return (0);
 }
 */
